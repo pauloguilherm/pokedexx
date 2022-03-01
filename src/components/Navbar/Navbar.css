@@ -1,0 +1,27 @@
+.nav{
+    height: 70px;
+    width: 100%;
+    background-color: #a3d7d5;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input{
+    width: 200px !important;
+    height: 40px !important;
+}
+
+.logo{
+    background-image: url('./assets/img/pokedex.png');
+    background-size: cover;
+    margin: 10px;
+    height: 50px;
+    width: 50px;
+}
+
+.container-search{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
