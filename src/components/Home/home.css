@@ -1,0 +1,49 @@
+.container-pokes{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 120px;
+    flex-wrap: wrap;
+    margin: 100px 0px 0px 0px;
+}
+
+.container-types{
+    height: auto;
+    width: 200px;
+}
+
+.container-pokes h1{
+    text-align: flex-start;
+    margin: 10px 0px 10px 20px;
+}
+
+.container-pokes p{
+    color: black;
+    margin: 0px 0px 0px 20px;
+}
+
+.container-pokes span{
+    color: black;
+    margin: 0px 0px 0px 5px;
+}
+
+.container-pokes h4{
+    color: black;
+    font-size: 18px;
+    margin: 0px 0px 0px 20px;
+}
+
+.container-pokes h1::first-letter{
+    text-transform: uppercase;
+}
+
+.pokesImg{
+    width: 300px;
+    height: 200px;
+}
+
+.cards{
+    background-color: #a3d7d5;
+    border-radius: 20px;
+    height: 350px;
+}
