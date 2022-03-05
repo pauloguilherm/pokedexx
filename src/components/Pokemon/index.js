@@ -1,6 +1,6 @@
 
 import './pokemon.css'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import api from '../../service/api'
 
@@ -8,13 +8,20 @@ export default function Pokemon(){
     const { id } = useParams();
     const [pokemon, setPokemon] = useState([])
     const [loading, setLoading] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(()=>{
 
         async function loadPoke(){
 
             const poke = await api.get(`/${id}`)
-            setPokemon(poke.data)
+            .then((res)=>{
+                return res.data
+            })
+            .catch(()=>{
+                navigate('/error')
+            })
+            setPokemon(poke)
             setLoading(false)
         }
 

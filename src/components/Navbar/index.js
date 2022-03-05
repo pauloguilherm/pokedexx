@@ -9,12 +9,6 @@ export default function Navbar(){
 
     function loadPokes(){
         navigate(`/pokemon/${pokeName}`)
-        .then(()=>{
-            console.log('oi')
-        })
-        .catch(()=>{
-            console.log('erro')
-        })
         window.location.reload();
     }
     return(
