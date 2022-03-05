@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+
+.container-pokemons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px 0px 0px 0px;
+}
+
+.container-pokemons h1{
+    margin: 0px 0px 100px 0px;
+    font-size: 50px;
+    font-family: 'Roboto Mono', monospace;
+    text-decoration: underline
+}
+
+.container-pokemons img{
+    min-width: 200px;
+    width: 300px;
+    margin: 30px 0px 0px 0px;
+}
+
+
+.container-pokemons h1:first-letter{
+    text-transform: uppercase;
+}
+
+.container-infos{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.container-pokemons h3{
+    font-size: 20px;
+    font-family: 'Roboto Mono', monospace;
+    color: #ffff;
+}
+
+
+.container-pokemons p{
+    font-size: 15px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    color: black;
+    margin: 0px;
+    padding: 0;
+}
+
+
+.pokeStatus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #30a7d7;
+    height: 300px;
+    width: 500px;
+    border-radius: 20%;
+}
+
+.pokeDetails{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin: 20px 0px 0px 0px;
+}
