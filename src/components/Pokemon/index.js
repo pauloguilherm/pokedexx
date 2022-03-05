@@ -3,6 +3,7 @@ import './pokemon.css'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import api from '../../service/api'
+import Load from '../Load'
 
 export default function Pokemon(){
     const { id } = useParams();
@@ -31,7 +32,7 @@ export default function Pokemon(){
  
     if(loading){
         return(
-            <h1>Carregando...</h1>
+            <Load />
         )
     }
     else{

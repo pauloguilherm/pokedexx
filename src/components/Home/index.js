@@ -2,6 +2,7 @@ import './home.css'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+import Load from '../Load'
 import api from '../../service/api';
 
 
@@ -46,8 +47,8 @@ export default function Home(){
                 scroll = infosPokes[infosPokes.length - 1].id - 21
                 window.location.href=`#${scroll}`
             }
-
-            setLoading(false) 
+            
+                setLoading(false) 
         }
         dataPokemons();
         
@@ -61,7 +62,7 @@ export default function Home(){
     }
      if(loading){
         return(
-            <h1>Carregando...</h1> 
+            <Load />
         )
      }
 
