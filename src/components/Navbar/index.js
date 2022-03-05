@@ -1,14 +1,21 @@
 import './Navbar.css'
 import { Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 export default function Navbar(){
-    const [pokeName, setPokeName] = useState([])
-    
-    function searchPokes(){
+    const [pokeName, setPokeName] = useState();
+    const navigate= useNavigate();
 
-
+    function loadPokes(){
+        navigate(`/pokemon/${pokeName}`)
+        .then(()=>{
+            console.log('oi')
+        })
+        .catch(()=>{
+            console.log('erro')
+        })
+        window.location.reload();
     }
     return(
         <div>
@@ -19,11 +26,12 @@ export default function Navbar(){
                 <div className="container-search">
 
                 <input 
+                onChange={(e)=> setPokeName(e.target.value)}
                 type="text"
                 className="input form-control"
                 placeholder="Pesquise pokemons"/>
 
-                <Button>Pesquisar</Button>
+                <Button onClick={loadPokes}>Pesquisar</Button>
                 
                 </div>
             </nav>

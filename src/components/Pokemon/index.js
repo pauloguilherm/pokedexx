@@ -53,21 +53,21 @@ export default function Pokemon(){
 
                     <div className="pokeDetails">
                     <h3>Abilities:</h3>
-                        <p>  {pokemon.abilities.length > 1 ? 
+                        <div>  {pokemon.abilities.length > 1 ? 
                                <><p>{pokemon.abilities[0].ability.name}</p>
                                <p> {pokemon.abilities[1].ability.name}</p></>
                                :<p>{pokemon.abilities[0].ability.name}</p>}
-                        </p>
+                        </div>
                     </div>
 
                     <div className="pokeDetails">
                     <h3>Types:</h3>
-                        <p>
+                        <div>
                                 {pokemon.types.length > 1 ? 
                                <><p>{pokemon.types[0].type.name}</p>
                                <p> {pokemon.types[1].type.name}</p></>
                                :<p>{pokemon.types[0].type.name}</p>}
-                        </p>
+                        </div>
                     
                     </div>
                 </div>

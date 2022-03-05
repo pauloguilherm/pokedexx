@@ -14,7 +14,6 @@ export default function Home(){
     const [qtdPokes, setQtdPokes] = useState(21)
     const infosPokes = []
 
-
     useEffect(()=>{
 
         async function loadPokemons(){
@@ -38,13 +37,21 @@ export default function Home(){
                 .then((res)=>{
                    return res.data
                 })
-                
-            }        
-            setInfos(infosPokes) 
-            setLoading(false)  
-        }
 
-        dataPokemons()
+            }        
+            setInfos(infosPokes)  
+
+            let scroll
+            if(infosPokes[infosPokes.length - 1].id > 21){
+                scroll = infosPokes[infosPokes.length - 1].id - 21
+                window.location.href=`#${scroll}`
+            }
+
+            setLoading(false) 
+        }
+        dataPokemons();
+        
+       
     },[pokemonName, qtdPokes])
 
 
@@ -67,7 +74,7 @@ export default function Home(){
 
                     return(<Link to={`/pokemon/${item.id}`} name={item.name}  key={key}>
                         <div >
-                            <div className="cards">
+                            <div className="cards" id={item.id} href="#">
                                <img className="pokesImg" src={item.sprites.other.dream_world.front_default}/>
                                <p>Nº00{item.id}</p>
                                <h1>{item.name}</h1>
