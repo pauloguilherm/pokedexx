@@ -85,3 +85,8 @@ a{
 a:hover{
     color: black;
 }
+
+.pokebola{
+    width: 50px;
+    margin: 10px 0px 0px 0px;
+}

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import Load from '../Load'
 import api from '../../service/api';
+import pokeBolaAberta from './assets/imagens/pokebolaAberta.png'
+import pokeBolaFechada from  './assets/imagens/pokebolaFechada.jpg'
 
 
 
@@ -13,6 +15,8 @@ export default function Home(){
     const [loading, setLoading] = useState(true)
     const [infos, setInfos] = useState([])
     const [qtdPokes, setQtdPokes] = useState(21)
+    var Catch = []
+    var Catchs = JSON.parse(localStorage.getItem('pokemons'))
     const infosPokes = []
 
     useEffect(()=>{
@@ -60,6 +64,22 @@ export default function Home(){
         let quantidade = qtdPokes + 21;
         setQtdPokes(quantidade)
     }
+
+    function catchPoke(e){
+        if(e.target.src.slice(-39) == 'pokebolaAberta.8f7a0a9a7936bcfa9603.png'){
+            e.target.src = pokeBolaFechada
+            Catch.push(e.target.alt)
+            localStorage.setItem('pokemons', JSON.stringify(Catch))
+        }
+        else{
+            e.target.src = pokeBolaAberta
+            const Capturados = Catch.filter(poke => poke !== e.target.alt)
+            Catch = Capturados
+            localStorage.setItem('pokemons', JSON.stringify(Capturados))
+        }
+        
+}
+
      if(loading){
         return(
             <Load />
@@ -73,9 +93,11 @@ export default function Home(){
             <div className="container-pokes">
                 {infos.map((item, key)=>{
 
-                    return(<Link to={`/pokemon/${item.id}`} name={item.name}  key={key}>
+                    return(
+                <div className="cards" key={key}>
+                    <Link to={`/pokemon/${item.id}`} name={item.name} >
                         <div >
-                            <div className="cards" id={item.id} href="#">
+                            <div id={item.id} href={item.id}>
                                <img className="pokesImg" src={item.sprites.other.dream_world.front_default}/>
                                <p>Nº00{item.id}</p>
                                <h1>{item.name}</h1>
@@ -85,7 +107,10 @@ export default function Home(){
                                :<span>{item.types[0].type.name}</span>}</h4>
                             </div>
                         </div>
-                        </Link>)
+                    </Link>
+                    {Catchs.includes(item.name) ? <img onClick={catchPoke} src={pokeBolaFechada} className="pokebola" alt={item.name}/>
+                    : <img onClick={catchPoke} src={pokeBolaAberta} alt={item.name} className="pokebola"/>}
+                </div>)
                 })}
             </div>
             <Button variant="info" onClick={()=> loadPokes()}>Carregar mais pokemons</Button>{' '}
