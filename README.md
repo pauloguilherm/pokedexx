@@ -9,8 +9,8 @@
 </ol>
 
 <h2>Versão web:</h2>
-<video autoplay loop src="./imagens/web.mp4" width="100%"></video>
+<img src="./versoes/web.gif" width="100%" />
 
 <h2>Versão mobile:</h2>
-<video autoplay loop src="./imagens/mobile.mp4" width="100%"></video>
+<img src="./versoes/mobile.gif" width="100%"/>
 
