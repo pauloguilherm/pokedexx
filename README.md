@@ -1,7 +1,7 @@
 <h1>Pokedex</h1>
 
-<h2>Projeto desenvolvido consumindo a api <a href="https://pokeapi.co/">Pokemons</a></h2>
-<h2><a href="https://pokedexx-app.netlify.app" >Acesse o projeto online</a></h2>
+<h2>Projeto desenvolvido consumindo a api <a href="https://pokeapi.co/" target="_blank">Pokemons</a></h2>
+<h2><a href="https://pokedexx-app.netlify.app" target="_blank" >Acesse o projeto online</a></h2>
 
 <h2>Tecnologias utilizadas</h2>
 <ol>
