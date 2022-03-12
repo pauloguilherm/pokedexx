@@ -21,18 +21,12 @@ export default function Navbar(){
                 <div className="container-search">
 
                 <input 
-                onChange={(e)=> setPokeName(e.target.value)}
+                onChange={(e)=> setPokeName((e.target.value).toLowerCase())}
                 type="text"
                 className="input form-control"
                 placeholder="Pesquise pokemons"/>
 
                 <Button onClick={loadPokes}>Pesquisar</Button>
-                
-                </div>
-                <div>
-                    <Link to="/Capturados">
-                        <img src={Bag} className="pokeBag" />
-                    </Link>
                 </div>
             </nav>
         </div>

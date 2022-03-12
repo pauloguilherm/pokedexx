@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import Load from '../Load'
 import api from '../../service/api';
-import pokeBolaAberta from './assets/imagens/pokebolaAberta.png'
-import pokeBolaFechada from  './assets/imagens/pokebolaFechada.jpg'
-
-
 
 export default function Home(){
 
@@ -16,9 +12,8 @@ export default function Home(){
     const [infos, setInfos] = useState([])
     const [qtdPokes, setQtdPokes] = useState(21)
     var Catch = []
-    var Catchs = JSON.parse(localStorage.getItem('pokemons'))
     const infosPokes = []
-
+    Catch.push(localStorage.getItem('pokemons'))
     useEffect(()=>{
 
         async function loadPokemons(){
@@ -27,13 +22,12 @@ export default function Home(){
             setPokemonName(pokemons.data.results) 
             setLoading(false)
           }
-        
 
-       loadPokemons();
+        loadPokemons();
        
     }, [qtdPokes])
 
-    useEffect(()=>{
+    useEffect(()=>{ 
         async function dataPokemons(){
             setLoading(true)
             for(let i = 0;  i < pokemonName.length; i++){
@@ -51,7 +45,6 @@ export default function Home(){
                 scroll = infosPokes[infosPokes.length - 1].id - 21
                 window.location.href=`#${scroll}`
             }
-            
                 setLoading(false) 
         }
         dataPokemons();
@@ -65,21 +58,6 @@ export default function Home(){
         setQtdPokes(quantidade)
     }
 
-    function catchPoke(e){
-        if(e.target.src.slice(-39) == 'pokebolaAberta.8f7a0a9a7936bcfa9603.png'){
-            e.target.src = pokeBolaFechada
-            Catch.push(e.target.alt)
-            localStorage.setItem('pokemons', JSON.stringify(Catch))
-        }
-        else{
-            e.target.src = pokeBolaAberta
-            const Capturados = Catch.filter(poke => poke !== e.target.alt)
-            Catch = Capturados
-            localStorage.setItem('pokemons', JSON.stringify(Capturados))
-        }
-        
-}
-
      if(loading){
         return(
             <Load />
@@ -87,7 +65,6 @@ export default function Home(){
      }
 
      else{
-        
         return(
         <div className="container-geral">
             <div className="container-pokes">
@@ -98,7 +75,7 @@ export default function Home(){
                     <Link to={`/pokemon/${item.id}`} name={item.name} >
                         <div >
                             <div id={item.id} href={item.id}>
-                               <img className="pokesImg" src={item.sprites.other.dream_world.front_default}/>
+                               <img className="pokesImg" alt={item.name} src={item.sprites.other.dream_world.front_default}/>
                                <p>Nº00{item.id}</p>
                                <h1>{item.name}</h1>
                                <h4>Types: {item.types.length > 1 ? 
@@ -108,8 +85,6 @@ export default function Home(){
                             </div>
                         </div>
                     </Link>
-                    {Catchs.includes(item.name) ? <img onClick={catchPoke} src={pokeBolaFechada} className="pokebola" alt={item.name}/>
-                    : <img onClick={catchPoke} src={pokeBolaAberta} alt={item.name} className="pokebola"/>}
                 </div>)
                 })}
             </div>

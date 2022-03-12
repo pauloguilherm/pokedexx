@@ -1,0 +1,13 @@
+.containerError{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.buttonHome{
+    background-color: #14cec8;
+    padding: 20px;
+    border-radius: 10px;
+}
