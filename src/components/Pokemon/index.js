@@ -7,21 +7,22 @@ import Load from '../Load'
 
 export default function Pokemon(){
     const { id } = useParams();
-    const [pokemon, setPokemon] = useState([])
-    const [loading, setLoading] = useState(true)
-    const navigate = useNavigate()
-
+    const [pokemon, setPokemon] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const history = useNavigate();
+    
     useEffect(()=>{
 
         async function loadPoke(){
 
             const poke = await api.get(`/${id}`)
-            .then((res)=>{
+            .then(res => {
                 return res.data
             })
             .catch(()=>{
-                navigate('/error')
+                history('/error')
             })
+
             setPokemon(poke)
             setLoading(false)
         }

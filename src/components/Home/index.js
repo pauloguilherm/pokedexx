@@ -7,55 +7,43 @@ import api from '../../service/api';
 
 export default function Home(){
 
-    const [pokemonName, setPokemonName] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [infos, setInfos] = useState([])
-    const [qtdPokes, setQtdPokes] = useState(21)
-    var Catch = []
-    const infosPokes = []
-    Catch.push(localStorage.getItem('pokemons'))
-    useEffect(()=>{
+    const [pokemonName, setPokemonName] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [infos, setInfos] = useState([]);
+    const [qtdPokes, setQtdPokes] = useState(21);
 
-        async function loadPokemons(){
+    async function loadPokemons(){
+        setIsProcessing(true);
+        const pokemons = await api.get(`?offset=0&limit=${qtdPokes}`);
+        setPokemonName(pokemons.data.results);
+        setIsProcessing(false);
+      }
 
-            const pokemons = await api.get(`?offset=0&limit=${qtdPokes}`)
-            setPokemonName(pokemons.data.results) 
-            setLoading(false)
-          }
-
-        loadPokemons();
-       
-    }, [qtdPokes])
-
-    useEffect(()=>{ 
-        async function dataPokemons(){
-            setLoading(true)
-            for(let i = 0;  i < pokemonName.length; i++){
-                
-                infosPokes[i] = await api.get(pokemonName[i].name)
-                .then((res)=>{
-                   return res.data
-                })
-
-            }        
-            setInfos(infosPokes)  
-
-            let scroll
-            if(infosPokes[infosPokes.length - 1].id > 21){
-                scroll = infosPokes[infosPokes.length - 1].id - 21
-                window.location.href=`#${scroll}`
-            }
-                setLoading(false) 
-        }
-        dataPokemons();
+      async function dataPokemons(){
+        setIsProcessing(true);
+        const infosPokes = [];
+        for(let i = 0;  i < pokemonName.length; i++){
         
-       
-    },[pokemonName, qtdPokes])
+            infosPokes[i] = await api.get(pokemonName[i].name)
+            .then((res)=>{
+               return res.data
+            });
+
+        }        
+        setInfos(infosPokes);
+        setIsProcessing(false);
+
+    }
+
+
+    useEffect(loadPokemons, [qtdPokes]);
+    useEffect(dataPokemons,[pokemonName, qtdPokes]);
 
 
     function loadPokes(){
         let quantidade = qtdPokes + 21;
-        setQtdPokes(quantidade)
+        setQtdPokes(quantidade);
     }
 
      if(loading){
@@ -88,7 +76,8 @@ export default function Home(){
                 </div>)
                 })}
             </div>
-            <Button variant="info" onClick={()=> loadPokes()}>Carregar mais pokemons</Button>{' '}
+            {isProcessing ? <Button variant="info" onClick={()=> loadPokes()}>Carregando...</Button> : 
+            <Button variant="info" onClick={()=> loadPokes()}>Carregar mais pokemons</Button>}
         </div>
         )
      }
